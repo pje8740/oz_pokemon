@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import "./App.scss";
-import { Link, Routes, Route } from "react-router-dom";
+import { Link, Routes, Route, useNavigate } from "react-router-dom";
 import { fetchMultiplePokemonById } from "./RTK/thunk";
 import { useDispatch } from "react-redux";
 import Main from "./pages/Main";
@@ -9,6 +9,7 @@ import Search from "./pages/Search";
 import Favorite from "./pages/Favorite";
 
 function App() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchMultiplePokemonById(151));
@@ -16,11 +17,16 @@ function App() {
   return (
     <>
       <h1 className="text-[40px] text-center">포켓몬 도감</h1>
-      <nav className="flex gap-[10px] justify-center">
+      <nav className="flex gap-[20px] justify-center">
         <Link to={"/"}>메인</Link>
-        <Link to={"/detail/1"}>상세정보</Link>
-        <Link to={"/search"}>검색</Link>
         <Link to={"/favorite"}>찜 목록</Link>
+        <div>
+          <input
+            onChange={(e) => navigate(`/search?pokemon=${e.target.value}`)}
+            className=" w-[120px] border-b border-[darkgray] px-2"
+          />
+          <span>🔍</span>
+        </div>
       </nav>
       <main className="flex flex-wrap gap-[20px] justify-center pt-[20px]">
         <Routes>
