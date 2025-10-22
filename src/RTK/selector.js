@@ -12,7 +12,7 @@ export const selectPokemonByRegExp = (reg) =>
     (pokemon) => pokemon.filter((el) => el.name.match(reg))
   );
 
-const selectFavoritePokemons = createSelector(
+export const selectFavoritePokemons = createSelector(
   (state) => state.pokemon.data,
   (state) => state.favorite,
   (pokemon, favorite) => {

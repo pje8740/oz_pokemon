@@ -28,7 +28,7 @@ export const favoriteSlice = createSlice({
   initialState: [1, 2, 3],
   reducers: {
     addToFavorite(state, action) {
-      state.push(action.payload);
+      state.push(action.payload.pokemonId);
     },
     removeFromFavorite(state, action) {
       const index = state.indexOf(action.payload.pokemonId);
